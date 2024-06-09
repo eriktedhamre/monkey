@@ -1,3 +1,3 @@
-module github.com/eriktedhamre/go_interp
+module monkey
 
 go 1.22.4
