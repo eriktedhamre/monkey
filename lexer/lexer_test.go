@@ -35,7 +35,7 @@ let result = add(five, ten);
 		{token.SEMICOLON, ";"},
 		// Line 3
 		{token.LET, "let"},
-		{token.IDENT, "five"},
+		{token.IDENT, "add"},
 		{token.ASSIGN, "="},
 		{token.FUNCTION, "fn"},
 		{token.LPAREN, "("},
