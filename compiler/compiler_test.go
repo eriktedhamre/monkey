@@ -64,7 +64,7 @@ func testInstructions(
 ) error {
 	concatted := concatInstructions(expected)
 
-	if len(actual) != len(expected) {
+	if len(actual) != len(concatted) {
 		return fmt.Errorf("wrong instructions length.\nwant=%q\ngot =%q",
 			concatted, actual)
 	}
