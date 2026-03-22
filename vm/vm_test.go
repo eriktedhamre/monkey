@@ -52,6 +52,16 @@ func testExpectedObject(t *testing.T, expected interface{}, actual object.Object
 	}
 }
 
+func TestIntegerAritmethic(t *testing.T) {
+	tests := []vmTestCase{
+		{"1", 1},
+		{"2", 2},
+		{"1 + 2", 3},
+	}
+
+	runVmTests(t, tests)
+}
+
 func parse(input string) *ast.Program {
 	l := lexer.New(input)
 	p := parser.New(l)
