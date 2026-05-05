@@ -41,21 +41,18 @@ func runVmTests(t *testing.T, tests []vmTestCase) {
 	}
 }
 
-func testExpectedObject(t *testing.T, expected interface{}, actual object.Object) {
-	t.Helper()
-
-	switch expected := expected.(type) {
-	case int:
-		err := testIntegerObject(int64(expected), actual)
-		if err != nil {
-			t.Errorf("testIntegerObject failed: %s", err)
-		}
-	case bool:
-		err := testBooleanObject(bool(expected), actual)
-		if err != nil {
-			t.Errorf("testBooleanObject failed: %s", err)
-		}
+func TestConditionals(t *testing.T) {
+	tests := []vmTestCase{
+		{"if (true) { 10 }", 10},
+		{"if (true) { 10 } else { 20 }", 10},
+		{"if (false) { 10 } else { 20 }", 20},
+		{"if (1) { 10 }", 10},
+		{"if (1 < 2) { 10 }", 10},
+		{"if (1 < 2) { 10 } else { 20 }", 10},
+		{"if (1 > 2) { 10 } else { 20 }", 20},
 	}
+
+	runVmTests(t, tests)
 }
 
 func TestIntegerAritmethic(t *testing.T) {
@@ -118,6 +115,23 @@ func parse(input string) *ast.Program {
 	l := lexer.New(input)
 	p := parser.New(l)
 	return p.ParseProgram()
+}
+
+func testExpectedObject(t *testing.T, expected interface{}, actual object.Object) {
+	t.Helper()
+
+	switch expected := expected.(type) {
+	case int:
+		err := testIntegerObject(int64(expected), actual)
+		if err != nil {
+			t.Errorf("testIntegerObject failed: %s", err)
+		}
+	case bool:
+		err := testBooleanObject(bool(expected), actual)
+		if err != nil {
+			t.Errorf("testBooleanObject failed: %s", err)
+		}
+	}
 }
 
 func testIntegerObject(expected int64, actual object.Object) error {
