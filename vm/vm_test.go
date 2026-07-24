@@ -69,7 +69,7 @@ func TestCallingFunctionsWithBindings(t *testing.T) {
 			input: `
 			let firstFoobar = fn() { let foobar = 50; foobar; };
 			let secondFoobar = fn() { let foobar = 100; foobar; };
-			firstFoorbar() + secondFoobar();
+			firstFoobar() + secondFoobar();
 			`,
 			expected: 150,
 		},
@@ -99,6 +99,16 @@ func TestFirstClassFunctions(t *testing.T) {
 			input: `
 			let returnsOne = fn() { 1; };
 			let returnsOneReturner = fn() { returnsOne; };
+			returnsOneReturner()();
+			`,
+			expected: 1,
+		},
+		{
+			input: `
+			let returnsOneReturner = fn() { 
+				let returnsOne = fn() { 1; };
+				returnsOne;
+			};
 			returnsOneReturner()();
 			`,
 			expected: 1,
