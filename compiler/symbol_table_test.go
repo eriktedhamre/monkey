@@ -74,7 +74,8 @@ func TestDefineResolveBuiltins(t *testing.T) {
 				continue
 			}
 			if result != sym {
-				t.Errorf("expected %s to resolve to %+v, got=%+v", sym.Name, sym, result)
+				t.Errorf("expected %s to resolve to %+v, got=%+v",
+					sym.Name, sym, result)
 			}
 		}
 	}
