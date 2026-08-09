@@ -19,7 +19,7 @@ func NewFrame(cl *object.Closure, basePointer int) *Frame {
 	}
 
 	return f
-}
+}	
 
 func (f *Frame) Instructions() code.Instructions {
 	return f.cl.Fn.Instructions

@@ -39,6 +39,7 @@ const (
 	OpSetLocal
 	OpGetBuiltin
 	OpClosure
+	OpGetFree
 )
 
 type Definition struct {
@@ -71,10 +72,11 @@ var definitions = map[Opcode]*Definition{
 	OpCall:          {"OpCall", []int{1}},
 	OpReturnValue:   {"OpReturnValue", []int{}},
 	OpReturn:        {"OpReturn", []int{}},
-	OpGetLocal:     {"OpGetLocal", []int{1}},
-	OpSetLocal:     {"OpSetLocal", []int{1}},
-	OpGetBuiltin: {"OpGetBuiltin", []int{1}},
-	OpClosure: {"OpClosure", []int{2, 1}},
+	OpGetLocal:      {"OpGetLocal", []int{1}},
+	OpSetLocal:      {"OpSetLocal", []int{1}},
+	OpGetBuiltin:    {"OpGetBuiltin", []int{1}},
+	OpClosure:       {"OpClosure", []int{2, 1}},
+	OpGetFree:       {"OpGetFree", []int{1}},
 }
 
 func Make(op Opcode, operands ...int) []byte {
