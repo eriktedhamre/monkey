@@ -185,7 +185,6 @@ func TestClosures(t *testing.T) {
 				[]code.Instructions{
 					code.Make(code.OpConstant, 1),
 					code.Make(code.OpSetLocal, 0),
-					code.Make(code.OpGetFree, 0),
 					code.Make(code.OpGetLocal, 0),
 					code.Make(code.OpClosure, 5, 1),
 					code.Make(code.OpReturnValue),
